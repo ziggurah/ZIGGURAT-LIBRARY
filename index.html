@@ -42,19 +42,18 @@
         .wallet-info { flex: 1; min-width: 250px; }
         .wallet-addr { font-family: monospace; color: var(--gold); font-size: 0.9rem; word-break: break-all; display: block; margin-top: 10px; background: #111; padding: 10px; }
 
-        .social-bar { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 30px; border-top: 1px solid #222; padding-top: 20px; align-items: center; }
-        .share-icons { display: flex; align-items: center; gap: 15px; }
-        .share-icons a { color: #555; font-size: 1.4rem; transition: 0.3s; text-decoration: none; position: relative; }
-        .share-icons a:hover { color: var(--gold); }
+        .social-bar { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 30px; border-top: 1px solid #222; padding-top: 20px; align-items: center; gap: 20px; }
         
-        /* استایل دکمه آرکایو بدون باکس رنگی */
+        .share-icons { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+        .share-icons a { color: #555; font-size: 1.3rem; transition: 0.3s; text-decoration: none; }
+        .share-icons a:hover { color: var(--gold); transform: translateY(-3px); }
+        
         .archive-vault-link { 
             color: var(--gold); text-decoration: none; font-size: 0.8rem; 
             letter-spacing: 1px; font-weight: bold; display: flex; align-items: center; gap: 8px;
-            position: relative;
+            position: relative; margin-left: 10px; border-left: 1px solid #333; padding-left: 20px;
         }
 
-        /* Pop-up مخصوص دکمه آرکایو */
         .archive-vault-link::after {
             content: "Access the permanent archive of all books on Internet Archive";
             position: absolute; bottom: 150%; left: 50%; transform: translateX(-50%);
@@ -119,8 +118,12 @@
 
         <div class="social-bar">
             <div class="share-icons">
-                <a href="#" id="share-tg" title="Telegram Share"><i class="fab fa-telegram"></i></a>
-                <a href="#" id="share-x" title="X Share"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://t.me/share/url?url=https://ziggurah.github.io/ZIGGURAT-LIBRARY/&text=Access%20the%20Ziggurat%20Library.%20Civilisation%20Starts%20Here." target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="https://twitter.com/intent/tweet?text=Access%20the%20Ziggurat%20Library.%20Civilisation%20Starts%20Here.%20https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.threads.net/" target="_blank" title="Threads"><i class="fab fa-threads"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                
                 <a href="https://archive.org/details/@ziggurat_library" target="_blank" class="archive-vault-link">
                     <i class="fas fa-landmark"></i> THE ETERNAL VAULT
                 </a>
