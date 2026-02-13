@@ -3,20 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIGGURAT LIBRARY</title>
+    <title>ZIGGURAT LIBRARY | OFFICIAL ARCHIVE</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0a0a0a; color: #ffffff; margin: 0; padding: 40px 20px; }
-        .container { max-width: 1000px; margin: 0 auto; }
-        header { text-align: center; border-bottom: 1px solid #222; padding-bottom: 40px; margin-bottom: 50px; }
-        h1 { letter-spacing: 6px; color: #d4af37; font-size: 2.2rem; margin: 0; font-weight: 300; }
-        p { color: #555; margin-top: 10px; font-size: 0.9rem; letter-spacing: 2px; }
-        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .book-card { background: #111; border: 1px solid #1a1a1a; padding: 30px; border-radius: 4px; transition: all 0.4s ease; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
-        .book-card:hover { border-color: #d4af37; background: #161616; }
-        .book-name { font-size: 0.95rem; font-weight: 400; margin-bottom: 25px; color: #ccc; line-height: 1.5; letter-spacing: 1px; }
-        .download-btn { background: transparent; border: 1px solid #444; color: #888; padding: 12px; text-decoration: none; text-align: center; border-radius: 2px; font-size: 0.8rem; font-weight: bold; transition: 0.3s; letter-spacing: 1px; }
-        .download-btn:hover { border-color: #d4af37; color: #d4af37; }
-        #status { text-align: center; color: #444; font-size: 0.9rem; margin-top: 50px; }
+        :root { --gold: #d4af37; --bg: #0a0a0a; --card: #111; --text: #ccc; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--bg); color: #fff; margin: 0; padding: 0; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        header { text-align: center; padding: 60px 0; border-bottom: 1px solid #222; }
+        h1 { letter-spacing: 8px; color: var(--gold); font-size: 2.5rem; margin: 0; font-weight: 300; }
+        
+        .manifesto { background: var(--card); border-left: 3px solid var(--gold); padding: 30px; margin: 40px 0; border-radius: 4px; }
+        .manifesto h2 { color: var(--gold); font-size: 1.2rem; letter-spacing: 2px; margin-top: 0; }
+        .manifesto p { color: var(--text); font-size: 0.95rem; margin-bottom: 20px; }
+        
+        .donation-box { background: #1a1a1a; border: 1px dashed #444; padding: 20px; text-align: center; border-radius: 4px; margin-bottom: 20px; }
+        .wallet-addr { font-family: monospace; color: var(--gold); background: #000; padding: 12px; display: block; margin: 10px 0; word-break: break-all; font-size: 0.8rem; border: 1px solid #222; }
+        
+        .share-actions { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+        .share-btn { padding: 8px 15px; font-size: 0.75rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; border-radius: 3px; transition: 0.3s; font-weight: bold; }
+        .share-btn:hover { background: var(--gold); color: #000; }
+
+        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-top: 50px; }
+        .book-card { background: var(--card); border: 1px solid #1a1a1a; padding: 25px; border-radius: 4px; transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between; }
+        .book-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+        .book-name { font-size: 0.9rem; color: #fff; margin-bottom: 20px; letter-spacing: 1px; font-weight: 500; }
+        .download-btn { border: 1px solid #444; color: #888; padding: 10px; text-decoration: none; text-align: center; font-size: 0.8rem; font-weight: bold; transition: 0.3s; }
+        .download-btn:hover { border-color: var(--gold); color: var(--gold); }
+        
+        #status { text-align: center; color: #444; margin-top: 40px; }
+        .badge { display: inline-block; padding: 2px 8px; background: var(--gold); color: #000; font-size: 0.65rem; font-weight: bold; margin-bottom: 10px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -24,10 +39,30 @@
 <div class="container">
     <header>
         <h1>ZIGGURAT LIBRARY</h1>
-        <p>DIGITAL ARCHIVE</p>
+        <p style="color:#555; letter-spacing: 3px;">DIGITAL ARCHIVE & MANIFESTO</p>
     </header>
 
-    <div id="status">INITIALIZING ARCHIVE...</div>
+    <section class="manifesto">
+        <h2>AUTHOR'S CONTRACT</h2>
+        <p>
+            By accessing this archive, you agree to the <strong>Viral Distribution Protocol</strong>. 
+            If these texts hold value, you are encouraged to replicate, re-upload, and distribute them freely. 
+            Information is a living entity; do not let it stagnate.
+        </p>
+        
+        <div class="donation-box">
+            <span style="font-size: 0.75rem; color: #888; letter-spacing: 1px;">DONATE TO SUPPORT THE ARCHIVE (TON)</span>
+            <span class="wallet-addr">UQCFGBUjsD6T-9Vf9-fDiu6qV2jAjejc8ed-2hYn4JwYw-2i</span>
+        </div>
+
+        <div class="share-actions">
+            <a href="#" id="share-tg" class="share-btn">SHARE ON TELEGRAM</a>
+            <a href="#" id="share-x" class="share-btn">SHARE ON X (TWITTER)</a>
+        </div>
+    </section>
+
+    <h2 style="letter-spacing: 2px; font-size: 1rem; border-bottom: 1px solid #222; padding-bottom: 10px; color: #555;">AVAILABLE DOCUMENTS</h2>
+    <div id="status">SCANNING ARCHIVE...</div>
     <div class="library-grid" id="viewer"></div>
 </div>
 
@@ -36,35 +71,36 @@
     const REPO_NAME = 'ZIGGURAT-LIBRARY';
     const FOLDER_PATH = 'books';
 
+    // Update Share Links
+    const currentUrl = window.location.href;
+    const shareText = "Access the Ziggurat Digital Archive. Free knowledge for the brave.";
+    document.getElementById('share-tg').href = `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(shareText)}`;
+    document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText + " " + currentUrl)}`;
+
     async function fetchArchive() {
         const viewer = document.getElementById('viewer');
         const status = document.getElementById('status');
-        
         try {
             const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${FOLDER_PATH}`);
-            if (!response.ok) throw new Error('Not Found');
             const files = await response.json();
-            
             status.style.display = 'none';
             files.forEach(file => {
-                const isDoc = file.name.toLowerCase().match(/\.(pdf|epub|mobi)$/);
-                if (isDoc) {
+                if (file.name.toLowerCase().match(/\.(pdf|epub|mobi)$/)) {
                     const card = document.createElement('div');
                     card.className = 'book-card';
                     const displayName = file.name.replace(/\.[^/.]+$/, "").replace(/[_-]/g, " ");
-                    
                     card.innerHTML = `
-                        <div class="book-name">${displayName.toUpperCase()}</div>
-                        <a href="${file.download_url}" class="download-btn" target="_blank">ACCESS DOCUMENT</a>
+                        <div>
+                            <span class="badge">OPEN ACCESS</span>
+                            <div class="book-name">${displayName.toUpperCase()}</div>
+                        </div>
+                        <a href="${file.download_url}" class="download-btn" target="_blank">GET DOCUMENT</a>
                     `;
                     viewer.appendChild(card);
                 }
             });
-        } catch (err) {
-            status.innerText = 'SYSTEM ERROR: ARCHIVE INACCESSIBLE';
-        }
+        } catch (err) { status.innerText = 'SYSTEM ERROR: ARCHIVE INACCESSIBLE'; }
     }
-
     fetchArchive();
 </script>
 
