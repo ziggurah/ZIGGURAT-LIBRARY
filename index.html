@@ -104,7 +104,7 @@
             // ابتدا تلاش برای دریافت فایل توضیحات
             let descriptions = {};
             try {
-                const descRes = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/main/${FOLDER_PATH}/descriptions.json`);
+                const descRes = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/Ziggurat-Library/${FOLDER_PATH}/descriptions.json`);
                 if (descRes.ok) descriptions = await descRes.json();
             } catch (e) { console.log("No descriptions.json found"); }
 
