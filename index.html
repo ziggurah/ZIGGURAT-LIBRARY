@@ -101,10 +101,10 @@
         const viewer = document.getElementById('viewer');
         const status = document.getElementById('status');
         try {
-            // ۱. دریافت فایل توضیحات با نام جدید (description.json)
+            // ۱. دریافت فایل توضیحات با نام جدید (descriptions.json)
             const descUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/refs/heads/${BRANCH}/${FOLDER_PATH}/descriptions.json`;
             const descRes = await fetch(descUrl);
-            if (!descRes.ok) throw new Error("Description file not found");
+            if (!descRes.ok) throw new Error("Descriptions file not found");
             const descriptions = await descRes.json();
 
             // ۲. دریافت لیست فایل‌ها از گیت‌هاب برای لینک‌های دانلود
