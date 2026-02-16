@@ -58,11 +58,8 @@
         .btn { border: 1px solid var(--gold); color: var(--gold); padding: 10px 5px; text-decoration: none; font-size: 0.7rem; flex: 1; font-weight: bold; text-transform: uppercase; }
         .btn:hover { background: var(--gold); color: #000; }
 
-        /* Footer & Statistics */
-        footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid #222; text-align: center; background: rgba(0,0,0,0.5); }
+        footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid #222; text-align: center; }
         .stats-title { color: var(--gold); font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 20px; opacity: 0.6; }
-        #clustrmaps-widget { display: inline-block; opacity: 0.8; transition: 0.5s; }
-        #clustrmaps-widget:hover { opacity: 1; }
     </style>
 </head>
 <body>
@@ -103,9 +100,7 @@
 
     <footer>
         <div class="stats-title">GLOBAL TRANSMISSION MAP</div>
-        <div id="clustrmaps-widget">
-            <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Xn_fT8pA8lU9Wv-pT9S-m6_n8Y9W-L-kG-L-S-m&cl=ffffff&w=a&t=n&c0=d4af37&c1=000000"></script>
-        </div>
+        <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Xn_fT8pA8lU9Wv-pT9S-m6_n8Y9W-L-kG-L-S-m&cl=ffffff&w=a&t=n&c0=d4af37&c1=000000"></script>
     </footer>
 </div>
 
@@ -159,6 +154,7 @@
     }
     fetchArchive();
 </script>
+
 <script data-goatcounter="https://ziggurah.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
