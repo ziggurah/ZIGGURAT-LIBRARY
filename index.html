@@ -20,7 +20,6 @@
         h1 { letter-spacing: 12px; color: var(--gold); font-size: 3.5rem; margin: 0; font-weight: 300; text-transform: uppercase; }
         .subtitle { letter-spacing: 5px; color: #666; font-size: 1rem; margin-top: 15px; }
         
-        /* Temple Box */
         .temple-box { 
             background: rgba(20, 20, 20, 0.85); border: 1px solid #333;
             padding: 40px; margin: 50px 0; border-radius: 2px; backdrop-filter: blur(10px);
@@ -32,11 +31,11 @@
         /* Donation Section */
         .donation-container { background: #000; border: 1px solid #222; margin-top: 30px; overflow: hidden; }
         .donation-tabs { display: flex; background: #111; border-bottom: 1px solid #222; overflow-x: auto; }
-        .tab-btn { flex: 1; min-width: 100px; padding: 15px 5px; border: none; background: none; color: #555; cursor: pointer; font-size: 0.7rem; letter-spacing: 1px; transition: 0.3s; font-weight: bold; }
+        .tab-btn { flex: 1; min-width: 100px; padding: 15px 5px; border: none; background: none; color: #555; cursor: pointer; font-size: 0.7rem; letter-spacing: 1px; transition: 0.3s; font-weight: bold; outline: none; }
         .tab-btn.active { color: var(--gold); background: #000; border-bottom: 2px solid var(--gold); }
         
-        .donation-content { display: flex; flex-wrap: wrap; gap: 25px; align-items: center; padding: 25px; display: none; }
-        .donation-content.active { display: flex; }
+        .donation-content { display: none; flex-wrap: wrap; gap: 25px; align-items: center; padding: 25px; }
+        .donation-content.active { display: flex !important; } /* Force display when active */
         
         .qr-code { width: 140px; height: 140px; border: 1px solid var(--gold); background: #fff; padding: 5px; cursor: pointer; }
         .wallet-info { flex: 1; min-width: 250px; position: relative; }
@@ -61,14 +60,7 @@
         }
         .pay-now-btn:hover { background: #fff; transform: translateY(-2px); }
 
-        /* Social Bar */
-        .social-bar { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 30px; border-top: 1px solid #222; padding-top: 20px; align-items: center; gap: 20px; }
-        .share-icons { display: flex; gap: 18px; }
-        .share-icons a { color: #555; font-size: 1.3rem; transition: 0.3s; }
-        .share-icons a:hover { color: var(--gold); transform: translateY(-3px); }
-        .contact-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; margin-left: 20px; opacity: 0.7; }
-
-        /* Grid System */
+        /* Library Grid */
         .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
         .book-card { background: rgba(15, 15, 15, 0.95); border: 1px solid #1a1a1a; padding: 40px 20px; text-align: center; transition: 0.4s; position: relative; }
         .book-card:hover { border-color: var(--gold); transform: translateY(-8px); background: #1a1a1a; }
@@ -79,6 +71,12 @@
         .btn-group { display: flex; gap: 10px; }
         .btn { border: 1px solid var(--gold); color: var(--gold); padding: 10px 5px; text-decoration: none; font-size: 0.7rem; transition: 0.3s; flex: 1; font-weight: bold; text-transform: uppercase; }
         .btn:hover { background: var(--gold); color: #000; }
+        
+        .social-bar { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 30px; border-top: 1px solid #222; padding-top: 20px; align-items: center; gap: 20px; }
+        .share-icons { display: flex; gap: 18px; }
+        .share-icons a { color: #555; font-size: 1.3rem; transition: 0.3s; }
+        .share-icons a:hover { color: var(--gold); transform: translateY(-3px); }
+        .contact-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; margin-left: 20px; opacity: 0.7; }
         #status { text-align: center; color: var(--gold); margin-top: 60px; font-size: 0.9rem; letter-spacing: 5px; }
     </style>
 </head>
@@ -138,23 +136,4 @@
             <div class="share-icons">
                 <a href="https://t.me/share/url?url=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank"><i class="fab fa-telegram"></i></a>
                 <a href="https://twitter.com/intent/tweet?text=Access%20Ziggurat%20Library" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://archive.org/details/@ziggurat_library" target="_blank"><i class="fas fa-landmark"></i></a>
-            </div>
-            <div class="contact-links">
-                <a href="mailto:oracle1903@gmail.com">EMAIL</a>
-                <a href="https://t.me/persianmagilibrary" target="_blank">CHANNEL</a>
-            </div>
-        </div>
-    </section>
-
-    <div id="status">UNVEILING THE ARCHIVES...</div>
-    <div class="library-grid" id="viewer"></div>
-</div>
-
-<script>
-    function openTab(evt, tabName) {
-        var i, content, tabs;
-        content = document.getElementsByClassName("donation-content");
-        for (i = 0; i < content.length; i++) { content[i].style.display = "none"; content[i].classList.remove("active"); }
-        tabs = document.getElementsByClassName("tab-btn");
-        for (i = 0; i < tabs.length; i++)
+                <a href="https://
