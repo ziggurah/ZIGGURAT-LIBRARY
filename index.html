@@ -40,35 +40,29 @@
         .wallet-addr:hover { border-color: var(--gold); background: #111; }
         .copy-toast { position: absolute; top: -25px; right: 0; color: var(--gold); font-size: 0.65rem; letter-spacing: 1px; display: none; }
 
-        .pay-now-btn {
-            display: inline-flex; align-items: center; gap: 8px; margin-top: 5px; padding: 10px 18px;
-            background: var(--gold); color: #000; text-decoration: none; font-weight: bold; font-size: 0.7rem; letter-spacing: 1px; transition: 0.3s; border-radius: 2px;
-        }
+        .pay-now-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 5px; padding: 10px 18px; background: var(--gold); color: #000; text-decoration: none; font-weight: bold; font-size: 0.7rem; letter-spacing: 1px; border-radius: 2px; }
 
         .social-bar { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 30px; border-top: 1px solid #222; padding-top: 20px; align-items: center; gap: 20px; }
         .share-icons { display: flex; gap: 18px; align-items: center; }
         .share-icons a { color: #555; font-size: 1.3rem; transition: 0.3s; text-decoration: none; }
         .share-icons a:hover { color: var(--gold); transform: translateY(-3px); }
         .archive-vault-link { color: var(--gold); text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; font-weight: bold; display: flex; align-items: center; gap: 8px; border-left: 1px solid #333; padding-left: 20px; }
-        .contact-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; margin-left: 20px; opacity: 0.7; }
-
+        
         .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
         .book-card { background: rgba(15, 15, 15, 0.95); border: 1px solid #1a1a1a; padding: 40px 20px; text-align: center; transition: 0.4s; position: relative; }
         .book-card:hover { border-color: var(--gold); transform: translateY(-8px); background: #1a1a1a; }
-        .book-tooltip { 
-            position: absolute; bottom: 105%; left: 10%; right: 10%; 
-            background: var(--gold); color: #000; padding: 12px; 
-            font-size: 0.8rem; border-radius: 4px; visibility: hidden; 
-            opacity: 0; transition: 0.3s; z-index: 100; font-weight: 500; 
-            pointer-events: none; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
+        .book-tooltip { position: absolute; bottom: 105%; left: 10%; right: 10%; background: var(--gold); color: #000; padding: 12px; font-size: 0.8rem; border-radius: 4px; visibility: hidden; opacity: 0; transition: 0.3s; z-index: 100; font-weight: 500; pointer-events: none; }
         .book-card:hover .book-tooltip { visibility: visible; opacity: 1; }
         .book-card i { font-size: 3rem; color: var(--gold); margin-bottom: 25px; opacity: 0.6; }
         .book-name { font-size: 1rem; margin-bottom: 30px; display: block; color: #fff; height: 45px; overflow: hidden; letter-spacing: 1px; }
-        .btn-group { display: flex; gap: 10px; }
-        .btn { border: 1px solid var(--gold); color: var(--gold); padding: 10px 5px; text-decoration: none; font-size: 0.7rem; transition: 0.3s; flex: 1; font-weight: bold; text-transform: uppercase; }
+        .btn { border: 1px solid var(--gold); color: var(--gold); padding: 10px 5px; text-decoration: none; font-size: 0.7rem; flex: 1; font-weight: bold; text-transform: uppercase; }
         .btn:hover { background: var(--gold); color: #000; }
-        #status { text-align: center; color: var(--gold); margin-top: 60px; font-size: 0.9rem; letter-spacing: 5px; }
+
+        /* Footer & Statistics */
+        footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid #222; text-align: center; background: rgba(0,0,0,0.5); }
+        .stats-title { color: var(--gold); font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 20px; opacity: 0.6; }
+        #clustrmaps-widget { display: inline-block; opacity: 0.8; transition: 0.5s; }
+        #clustrmaps-widget:hover { opacity: 1; }
     </style>
 </head>
 <body>
@@ -77,44 +71,17 @@
     
     <section class="temple-box">
         <h2>YOU ARE STANDING IN A TEMPLE</h2>
-        <p>You have entered a zone of free transmission. These works are <strong>Seeds of Change</strong>. Mirror this archive and distribute the knowledge. Civilisation is a construction.</p>
+        <p>You have entered a zone of free transmission. These works are <strong>Seeds of Change</strong>. Mirror this archive and distribute the knowledge.</p>
         
         <div class="donation-container">
             <div class="donation-tabs">
-                <button class="tab-btn active" onclick="showTab('trust-tab', this)">TRUST (BEP20/ERC20)</button>
+                <button class="tab-btn active" onclick="showTab('trust-tab', this)">TRUST (BEP20)</button>
                 <button class="tab-btn" onclick="showTab('tron-tab', this)">TRON (TRC20)</button>
                 <button class="tab-btn" onclick="showTab('btc-tab', this)">BITCOIN</button>
             </div>
-
-            <div id="trust-tab" class="donation-content" style="display: flex;">
-                <img src="qr/qr-trust.jpg" class="qr-code">
-                <div class="wallet-info">
-                    <span style="font-size: 0.7rem; color: #666; letter-spacing: 1px;">NETWORK: BSC/ETH (USDT-BEP20 / BNB / ETH)</span>
-                    <span id="t1" class="copy-toast">COPIED!</span>
-                    <span class="wallet-addr" onclick="copyValue('0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889', 't1')">0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889</span>
-                    <a href="ethereum:0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889" class="pay-now-btn"><i class="fas fa-heart"></i> DONATE NOW!</a>
-                </div>
-            </div>
-
-            <div id="tron-tab" class="donation-content">
-                <img src="qr/qr-tron.jpg" class="qr-code">
-                <div class="wallet-info">
-                    <span style="font-size: 0.7rem; color: #666; letter-spacing: 1px;">NETWORK: TRON (USDT-TRC20 / TRX)</span>
-                    <span id="t2" class="copy-toast">COPIED!</span>
-                    <span class="wallet-addr" onclick="copyValue('TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm', 't2')">TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm</span>
-                    <a href="tron:TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm" class="pay-now-btn"><i class="fas fa-heart"></i> DONATE NOW!</a>
-                </div>
-            </div>
-
-            <div id="btc-tab" class="donation-content">
-                <img src="qr/qr-btc.jpg" class="qr-code">
-                <div class="wallet-info">
-                    <span style="font-size: 0.7rem; color: #666; letter-spacing: 1px;">NETWORK: BITCOIN</span>
-                    <span id="t3" class="copy-toast">COPIED!</span>
-                    <span class="wallet-addr" onclick="copyValue('bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r', 't3')">bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r</span>
-                    <a href="bitcoin:bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r" class="pay-now-btn"><i class="fas fa-heart"></i> DONATE NOW!</a>
-                </div>
-            </div>
+            <div id="trust-tab" class="donation-content" style="display: flex;"><img src="qr/qr-trust.jpg" class="qr-code"><div class="wallet-info"><span style="font-size: 0.7rem; color: #666;">NETWORK: BSC/ETH</span><span id="t1" class="copy-toast">COPIED!</span><span class="wallet-addr" onclick="copyValue('0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889', 't1')">0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889</span><a href="ethereum:0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889" class="pay-now-btn"><i class="fas fa-heart"></i> DONATE NOW!</a></div></div>
+            <div id="tron-tab" class="donation-content"><img src="qr/qr-tron.jpg" class="qr-code"><div class="wallet-info"><span style="font-size: 0.7rem; color: #666;">NETWORK: TRON (TRC20)</span><span id="t2" class="copy-toast">COPIED!</span><span class="wallet-addr" onclick="copyValue('TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm', 't2')">TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm</span><a href="tron:TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm" class="pay-now-btn"><i class="fas fa-heart"></i> DONATE NOW!</a></div></div>
+            <div id="btc-tab" class="donation-content"><img src="qr/qr-btc.jpg" class="qr-code"><div class="wallet-info"><span style="font-size: 0.7rem; color: #666;">NETWORK: BITCOIN</span><span id="t3" class="copy-toast">COPIED!</span><span class="wallet-addr" onclick="copyValue('bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r', 't3')">bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r</span><a href="bitcoin:bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r" class="pay-now-btn"><i class="fas fa-heart"></i> DONATE NOW!</a></div></div>
         </div>
 
         <div class="social-bar">
@@ -122,18 +89,24 @@
                 <a href="https://t.me/share/url?url=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank"><i class="fab fa-telegram"></i></a>
                 <a href="https://twitter.com/intent/tweet?url=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank"><i class="fab fa-x-twitter"></i></a>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.reddit.com/submit?url=https://ziggurah.github.io/ZIGGURAT-LIBRARY/&title=Ziggurat%20Library" target="_blank"><i class="fab fa-reddit-alien"></i></a>
+                <a href="https://www.reddit.com/submit?url=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank"><i class="fab fa-reddit-alien"></i></a>
                 <a href="https://archive.org/details/@ziggurat_library" target="_blank" class="archive-vault-link"><i class="fas fa-landmark"></i> THE VAULT</a>
             </div>
             <div class="contact-links">
-                <a href="mailto:oracle1903@gmail.com">EMAIL</a>
-                <a href="https://t.me/persianmagilibrary" target="_blank">CHANNEL</a>
+                <a href="mailto:oracle1903@gmail.com" style="color:var(--gold); text-decoration:none; opacity:0.7;">EMAIL</a>
             </div>
         </div>
     </section>
 
     <div id="status">UNVEILING THE ARCHIVES...</div>
     <div class="library-grid" id="viewer"></div>
+
+    <footer>
+        <div class="stats-title">GLOBAL TRANSMISSION MAP</div>
+        <div id="clustrmaps-widget">
+            <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Xn_fT8pA8lU9Wv-pT9S-m6_n8Y9W-L-kG-L-S-m&cl=ffffff&w=a&t=n&c0=d4af37&c1=000000"></script>
+        </div>
+    </footer>
 </div>
 
 <script>
@@ -186,8 +159,6 @@
     }
     fetchArchive();
 </script>
-
 <script data-goatcounter="https://ziggurah.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
 </body>
 </html>
