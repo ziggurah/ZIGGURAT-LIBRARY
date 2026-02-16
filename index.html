@@ -20,7 +20,7 @@
         h1 { letter-spacing: 12px; color: var(--gold); font-size: 3.5rem; margin: 0; font-weight: 300; text-transform: uppercase; }
         .subtitle { letter-spacing: 5px; color: #666; font-size: 1rem; margin-top: 15px; }
         
-        /* Temple Box & Donation Section */
+        /* Temple Box */
         .temple-box { 
             background: rgba(20, 20, 20, 0.85); border: 1px solid #333;
             padding: 40px; margin: 50px 0; border-radius: 2px; backdrop-filter: blur(10px);
@@ -29,10 +29,29 @@
         .temple-box h2 { color: var(--gold); font-size: 1.3rem; letter-spacing: 4px; margin-top: 0; font-weight: 400; border-bottom: 1px solid #333; padding-bottom: 15px; }
         .temple-box p { line-height: 1.8; color: #bbb; font-size: 1.05rem; margin-top: 20px; }
 
-        /* Donation Tabs Style */
+        /* Updated Donation Tabs for Mobile */
         .donation-container { background: #000; border: 1px solid #222; margin-top: 30px; overflow: hidden; }
-        .donation-tabs { display: flex; background: #111; border-bottom: 1px solid #222; }
-        .tab-btn { flex: 1; padding: 15px; border: none; background: none; color: #555; cursor: pointer; font-size: 0.75rem; letter-spacing: 2px; transition: 0.3s; font-weight: bold; }
+        .donation-tabs { 
+            display: flex; 
+            background: #111; 
+            border-bottom: 1px solid #222;
+            overflow-x: auto; /* Scroll for mobile */
+            -webkit-overflow-scrolling: touch;
+        }
+        .tab-btn { 
+            flex: 1; 
+            min-width: 120px; /* Ensures text doesn't squeeze */
+            padding: 15px 5px; 
+            border: none; 
+            background: none; 
+            color: #555; 
+            cursor: pointer; 
+            font-size: 0.65rem; 
+            letter-spacing: 1px; 
+            transition: 0.3s; 
+            font-weight: bold;
+            white-space: nowrap;
+        }
         .tab-btn.active { color: var(--gold); background: #000; border-bottom: 2px solid var(--gold); }
         
         .donation-content { display: flex; flex-wrap: wrap; gap: 25px; align-items: center; padding: 25px; display: none; }
@@ -40,11 +59,29 @@
         
         .qr-code { width: 140px; height: 140px; border: 1px solid var(--gold); background: #fff; padding: 5px; cursor: pointer; }
         .wallet-info { flex: 1; min-width: 250px; position: relative; }
-        .wallet-addr { font-family: monospace; color: var(--gold); font-size: 0.85rem; word-break: break-all; display: block; margin-top: 10px; background: #0a0a0a; padding: 12px; border: 1px dotted #444; cursor: pointer; transition: 0.3s; }
+        .wallet-addr { font-family: monospace; color: var(--gold); font-size: 0.85rem; word-break: break-all; display: block; margin: 10px 0; background: #0a0a0a; padding: 12px; border: 1px dotted #444; cursor: pointer; transition: 0.3s; }
         .wallet-addr:hover { border-color: var(--gold); background: #111; }
         .copy-toast { position: absolute; top: -25px; right: 0; color: var(--gold); font-size: 0.65rem; letter-spacing: 1px; display: none; }
 
-        /* Footer & Grid Styles */
+        /* Pay Now Button Style */
+        .pay-now-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+            padding: 10px 18px;
+            background: var(--gold);
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        .pay-now-btn:hover { background: #fff; transform: translateY(-2px); }
+
+        /* Social & Grid */
         .social-bar { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 30px; border-top: 1px solid #222; padding-top: 20px; align-items: center; gap: 20px; }
         .share-icons { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
         .share-icons a { color: #555; font-size: 1.3rem; transition: 0.3s; text-decoration: none; }
@@ -85,6 +122,9 @@
                     <span style="font-size: 0.7rem; color: #666; letter-spacing: 1px;">NETWORK: TON (USDT-TON / TON COIN)</span>
                     <span id="t1" class="copy-toast">COPIED!</span>
                     <span class="wallet-addr" onclick="copyValue(this.innerText, 't1')">UQCFGBUjsD6T-9Vf9-fDiu6qV2jAjejc8ed-2hYn4JwYw-2i</span>
+                    <a href="ton://transfer/UQCFGBUjsD6T-9Vf9-fDiu6qV2jAjejc8ed-2hYn4JwYw-2i" class="pay-now-btn">
+                        <i class="fas fa-wallet"></i> OPEN IN WALLET
+                    </a>
                 </div>
             </div>
 
@@ -94,6 +134,9 @@
                     <span style="font-size: 0.7rem; color: #666; letter-spacing: 1px;">NETWORK: BSC/ETH (USDT-BEP20 / BNB / ETH)</span>
                     <span id="t2" class="copy-toast">COPIED!</span>
                     <span class="wallet-addr" onclick="copyValue(this.innerText, 't2')">0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889</span>
+                    <a href="ethereum:0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889" class="pay-now-btn">
+                        <i class="fas fa-wallet"></i> OPEN TRUST WALLET
+                    </a>
                 </div>
             </div>
 
@@ -125,19 +168,22 @@
 </div>
 
 <script>
-    // Tab System
     function openTab(evt, tabName) {
         var i, content, tabs;
         content = document.getElementsByClassName("donation-content");
-        for (i = 0; i < content.length; i++) { content[i].style.display = "none"; content[i].classList.remove("active"); }
+        for (i = 0; i < content.length; i++) { 
+            content[i].style.display = "none"; 
+            content[i].classList.remove("active"); 
+        }
         tabs = document.getElementsByClassName("tab-btn");
-        for (i = 0; i < tabs.length; i++) { tabs[i].classList.remove("active"); }
+        for (i = 0; i < tabs.length; i++) { 
+            tabs[i].classList.remove("active"); 
+        }
         document.getElementById(tabName).style.display = "flex";
         document.getElementById(tabName).classList.add("active");
         evt.currentTarget.classList.add("active");
     }
 
-    // Copy System
     function copyValue(text, toastId) {
         navigator.clipboard.writeText(text).then(() => {
             const toast = document.getElementById(toastId);
@@ -146,7 +192,6 @@
         });
     }
 
-    // Library Fetch System
     const GITHUB_USER = 'ziggurah'; 
     const REPO_NAME = 'ZIGGURAT-LIBRARY';
     const FOLDER_PATH = 'books';
@@ -159,7 +204,6 @@
             const cacheBuster = Math.random();
             const descUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/${BRANCH}/${FOLDER_PATH}/descriptions.json?v=${cacheBuster}`;
             const descRes = await fetch(descUrl);
-            if (!descRes.ok) throw new Error("JSON not found");
             const descriptions = await descRes.json();
 
             const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${FOLDER_PATH}`);
