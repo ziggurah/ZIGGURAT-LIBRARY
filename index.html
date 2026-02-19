@@ -9,72 +9,90 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     
     <style>
-        :root { --gold: #d4af37; --bg: #0a0a0a; --text: #ececec; --sidebar-bg: rgba(15, 15, 15, 0.8); }
+        /* تم پیش‌فرض: روشن (رنگ معبد) */
+        :root { 
+            --gold: #b08d26; 
+            --bg: #e8e2d6; /* رنگ کرم سنگی رومی */
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --text: #2c2c2c; 
+            --sidebar-bg: rgba(230, 224, 210, 0.9);
+            --border: #d1c7b1;
+        }
+
+        /* حالت تاریک */
+        body.dark-mode { 
+            --gold: #d4af37; 
+            --bg: #0a0a0a; 
+            --card-bg: rgba(15, 15, 15, 0.9);
+            --text: #ececec; 
+            --sidebar-bg: rgba(20, 20, 20, 0.8);
+            --border: #222;
+        }
+
         body { 
             font-family: 'Playfair Display', serif; 
             background-color: var(--bg);
-            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000');
+            background-image: linear-gradient(rgba(232, 226, 214, 0.85), rgba(232, 226, 214, 0.85)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000');
             background-size: cover; background-attachment: fixed; background-position: center;
-            color: var(--text); margin: 0; padding: 0; scroll-behavior: smooth;
+            color: var(--text); margin: 0; padding: 0; scroll-behavior: smooth; transition: background 0.3s, color 0.3s;
         }
-        
-        /* Typography */
-        h1 { font-family: 'Cinzel', serif; letter-spacing: 15px; color: var(--gold); font-size: 4rem; margin: 0; text-transform: uppercase; text-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
-        .subtitle { letter-spacing: 6px; color: #666; font-size: 0.9rem; margin-top: 15px; font-weight: bold; }
 
-        header { text-align: center; padding: 60px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.3); margin-bottom: 40px; }
+        body.dark-mode {
+            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000');
+        }
 
-        /* Layout Architecture */
+        /* Toggle Button */
+        .theme-toggle { position: fixed; top: 20px; right: 20px; z-index: 1000; cursor: pointer; font-size: 1.5rem; color: var(--gold); background: var(--card-bg); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid var(--gold); }
+
+        h1 { font-family: 'Cinzel', serif; letter-spacing: 15px; color: var(--gold); font-size: 4rem; margin: 0; text-transform: uppercase; }
+        .subtitle { letter-spacing: 6px; color: #777; font-size: 0.9rem; margin-top: 15px; font-weight: bold; }
+        header { text-align: center; padding: 60px 0; border-bottom: 1px solid var(--gold); margin-bottom: 40px; }
+
+        /* Layout - Sidebar Made Slimmer */
         .main-wrapper { display: flex; max-width: 1200px; margin: 0 auto; gap: 40px; padding: 0 20px 60px 20px; align-items: flex-start; }
-        .content-area { flex: 2; }
-        .sidebar { flex: 1; position: sticky; top: 20px; background: var(--sidebar-bg); border: 1px solid #222; padding: 30px; border-radius: 4px; backdrop-filter: blur(10px); }
+        .content-area { flex: 3; } /* ستون اصلی بزرگتر */
+        .sidebar { flex: 1; position: sticky; top: 20px; background: var(--sidebar-bg); border: 1px solid var(--border); padding: 25px; border-radius: 4px; backdrop-filter: blur(10px); }
 
-        /* Intro Box */
-        .intro-box { background: rgba(20, 20, 20, 0.5); border: 1px solid #333; padding: 25px; margin-bottom: 40px; text-align: justify; }
-        .intro-box p { font-style: italic; color: #bbb; line-height: 1.8; margin: 0; font-size: 1.1rem; border-left: 2px solid var(--gold); padding-left: 20px; }
+        .intro-box { background: var(--card-bg); border: 1px solid var(--border); padding: 25px; margin-bottom: 40px; }
+        .intro-box p { font-style: italic; color: var(--text); line-height: 1.8; margin: 0; font-size: 1.1rem; border-left: 2px solid var(--gold); padding-left: 20px; opacity: 0.9; }
 
-        /* Grid */
-        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
-        .book-card { background: rgba(10, 10, 10, 0.9); border: 1px solid #222; padding: 35px 20px; text-align: center; transition: 0.4s; position: relative; }
-        .book-card:hover { border-color: var(--gold); transform: translateY(-5px); background: #111; }
-        .book-tooltip { position: absolute; bottom: 105%; left: 0; right: 0; background: var(--gold); color: #000; padding: 15px; font-size: 0.85rem; border-radius: 2px; visibility: hidden; opacity: 0; transition: 0.3s; z-index: 100; font-family: sans-serif; font-weight: 500; }
+        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; }
+        .book-card { background: var(--card-bg); border: 1px solid var(--border); padding: 35px 20px; text-align: center; transition: 0.4s; position: relative; }
+        .book-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .book-tooltip { position: absolute; bottom: 105%; left: 0; right: 0; background: var(--gold); color: #fff; padding: 15px; font-size: 0.85rem; border-radius: 2px; visibility: hidden; opacity: 0; transition: 0.3s; z-index: 100; font-family: sans-serif; }
         .book-card:hover .book-tooltip { visibility: visible; opacity: 1; }
-        .book-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; opacity: 0.5; }
-        .book-name { font-size: 0.95rem; margin-bottom: 25px; color: #fff; height: 40px; overflow: hidden; letter-spacing: 1px; font-family: 'Cinzel', serif; }
-        .btn-group { display: flex; gap: 8px; }
-        .btn { border: 1px solid var(--gold); color: var(--gold); padding: 8px; text-decoration: none; font-size: 0.7rem; flex: 1; font-weight: bold; text-transform: uppercase; transition: 0.3s; font-family: sans-serif; }
-        .btn:hover { background: var(--gold); color: #000; }
+        .book-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; opacity: 0.7; }
+        .book-name { font-size: 0.95rem; margin-bottom: 25px; color: var(--text); height: 40px; overflow: hidden; letter-spacing: 1px; font-family: 'Cinzel', serif; }
+        
+        .btn { border: 1px solid var(--gold); color: var(--gold); padding: 8px; text-decoration: none; font-size: 0.7rem; flex: 1; font-weight: bold; text-transform: uppercase; font-family: sans-serif; display: inline-block; margin: 0 2px; }
+        .btn:hover { background: var(--gold); color: #fff; }
 
-        /* Sidebar Elements */
         .side-section { margin-bottom: 40px; }
-        .side-section h3 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.1rem; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px; letter-spacing: 2px; }
-        .side-section p { font-size: 0.9rem; line-height: 1.6; color: #999; }
+        .side-section h3 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.1rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
+        .side-section p { font-size: 0.9rem; line-height: 1.6; color: var(--text); opacity: 0.8; }
 
-        /* Donation Inside Sidebar */
-        .donation-tabs { display: flex; background: #000; border: 1px solid #333; margin-bottom: 15px; }
-        .tab-btn { flex: 1; padding: 10px; border: none; background: none; color: #555; cursor: pointer; font-size: 0.65rem; font-weight: bold; }
-        .tab-btn.active { color: var(--gold); background: #111; border-bottom: 2px solid var(--gold); }
-        .donation-content { display: none; text-align: center; padding: 15px; background: #000; border: 1px solid #333; }
-        .qr-code { width: 100px; height: 100px; margin-bottom: 10px; border: 1px solid var(--gold); }
-        .wallet-addr { font-family: monospace; color: var(--gold); font-size: 0.7rem; word-break: break-all; cursor: pointer; display: block; padding: 5px; background: #111; }
+        .donation-tabs { display: flex; border: 1px solid var(--border); margin-bottom: 10px; }
+        .tab-btn { flex: 1; padding: 10px; border: none; background: none; color: #888; cursor: pointer; font-size: 0.65rem; font-weight: bold; }
+        .tab-btn.active { color: var(--gold); background: var(--bg); border-bottom: 2px solid var(--gold); }
+        .donation-content { display: none; text-align: center; padding: 15px; border: 1px solid var(--border); }
+        .qr-code { width: 100px; height: 100px; margin-bottom: 10px; }
+        .wallet-addr { font-family: monospace; color: var(--gold); font-size: 0.7rem; word-break: break-all; cursor: pointer; display: block; padding: 5px; }
 
-        /* Share & Contact */
-        .share-text { font-size: 0.75rem; color: #555; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase; }
         .share-icons { display: flex; gap: 15px; margin-top: 15px; }
-        .share-icons a { color: #666; font-size: 1.2rem; transition: 0.3s; }
-        .share-icons a:hover { color: var(--gold); }
-        .contact-btn { display: block; text-align: center; border: 1px solid var(--gold); color: var(--gold); padding: 10px; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; transition: 0.3s; font-weight: bold; }
-        .contact-btn:hover { background: var(--gold); color: #000; }
+        .share-icons a { color: var(--text); opacity: 0.6; font-size: 1.2rem; transition: 0.3s; }
+        .share-icons a:hover { color: var(--gold); opacity: 1; }
+        .contact-btn { display: block; text-align: center; border: 1px solid var(--gold); color: var(--gold); padding: 10px; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; font-weight: bold; }
+        .contact-btn:hover { background: var(--gold); color: #fff; }
 
-        @media (max-width: 900px) {
-            .main-wrapper { flex-direction: column; }
-            .sidebar { position: static; width: auto; }
-        }
-
+        @media (max-width: 900px) { .main-wrapper { flex-direction: column; } .sidebar { position: static; width: auto; } }
         #status { text-align: center; color: var(--gold); letter-spacing: 3px; margin: 40px 0; }
     </style>
 </head>
-<body>
+<body id="body">
+
+<div class="theme-toggle" onclick="toggleTheme()" title="Toggle Ancient/Modern Mode">
+    <i class="fas fa-moon" id="theme-icon"></i>
+</div>
 
 <header>
     <h1>ZIGGURAT</h1>
@@ -86,7 +104,6 @@
         <div class="intro-box">
             <p>You do not live in reality. You live in a game that can be switched off: democracy, law, family, academia, history, etc. We dismantle them without asking permissions. What remains is an ancient field that invites you to a magic structure: Ziggurat.</p>
         </div>
-
         <div id="status">UNVEILING THE ARCHIVES...</div>
         <div class="library-grid" id="viewer"></div>
     </main>
@@ -94,12 +111,11 @@
     <aside class="sidebar">
         <div class="side-section">
             <h3>ABOUT</h3>
-            <p>Ziggurat is not a collection; it is a withdrawal. It is a static point in a world of high-velocity noise. Modern institutions are not failing—they are functioning exactly as designed: to reduce the human experience into a manageable data set.</p>
+            <p>Ziggurat is not a collection; it is a withdrawal. It is a static point in a world of high-velocity noise. Modern institutions are not failing—they are functioning exactly as designed.</p>
         </div>
 
         <div class="side-section">
             <h3>Help ZIGGURAT Stand</h3>
-            <p>Sustain the transmission. Your contributions ensure the archive remains beyond the reach of those who wish to switch off the light.</p>
             <div class="donation-tabs">
                 <button class="tab-btn active" onclick="showTab('trust-tab', this)">BEP20</button>
                 <button class="tab-btn" onclick="showTab('tron-tab', this)">TRC20</button>
@@ -109,24 +125,17 @@
                 <img src="qr/qr-trust.jpg" class="qr-code">
                 <span class="wallet-addr" onclick="copy('0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889')">0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889</span>
             </div>
-            <div id="tron-tab" class="donation-content">
-                <img src="qr/qr-tron.jpg" class="qr-code">
-                <span class="wallet-addr" onclick="copy('TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm')">TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm</span>
-            </div>
-            <div id="btc-tab" class="donation-content">
-                <img src="qr/qr-btc.jpg" class="qr-code">
-                <span class="wallet-addr" onclick="copy('bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r')">bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r</span>
-            </div>
+            <div id="tron-tab" class="donation-content"><img src="qr/qr-tron.jpg" class="qr-code"><span class="wallet-addr" onclick="copy('TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm')">TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm</span></div>
+            <div id="btc-tab" class="donation-content"><img src="qr/qr-btc.jpg" class="qr-code"><span class="wallet-addr" onclick="copy('bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r')">bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r</span></div>
         </div>
 
         <div class="side-section">
             <h3>CONTACT US</h3>
-            <p>Seek the Oracle for deeper transmissions.</p>
             <a href="mailto:oracle1903@gmail.com" class="contact-btn">SEND EMAIL</a>
         </div>
 
         <div class="side-section">
-            <div class="share-text">Mirror the Archive:</div>
+            <div style="font-size: 0.7rem; opacity: 0.6; margin-bottom: 10px;">MIRROR THE ARCHIVE:</div>
             <div class="share-icons">
                 <a href="https://t.me/share/url?url=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank"><i class="fab fa-telegram"></i></a>
                 <a href="https://api.whatsapp.com/send?text=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -139,6 +148,14 @@
 </div>
 
 <script>
+    function toggleTheme() {
+        const body = document.getElementById('body');
+        const icon = document.getElementById('theme-icon');
+        body.classList.toggle('dark-mode');
+        icon.classList.toggle('fa-moon');
+        icon.classList.toggle('fa-sun');
+    }
+
     function showTab(id, btn) {
         document.querySelectorAll('.donation-content').forEach(c => c.style.display = 'none');
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -148,18 +165,13 @@
 
     function copy(t) { navigator.clipboard.writeText(t); alert("Copied."); }
 
-    const GITHUB_USER = 'ziggurah'; 
-    const REPO_NAME = 'ZIGGURAT-LIBRARY';
-    const FOLDER_PATH = 'books';
-    const BRANCH = 'Ziggurat-Library';
-
     async function fetchArchive() {
         const viewer = document.getElementById('viewer');
         try {
             const cache = Math.random();
-            const descRes = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/${BRANCH}/${FOLDER_PATH}/descriptions.json?v=${cache}`);
+            const descRes = await fetch(`https://raw.githubusercontent.com/ziggurah/ZIGGURAT-LIBRARY/Ziggurat-Library/books/descriptions.json?v=${cache}`);
             const descriptions = await descRes.json();
-            const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${FOLDER_PATH}`);
+            const response = await fetch(`https://api.github.com/repos/ziggurah/ZIGGURAT-LIBRARY/contents/books`);
             const allFiles = await response.json();
             document.getElementById('status').style.display = 'none';
             viewer.innerHTML = '';
@@ -169,8 +181,7 @@
                     const card = document.createElement('div');
                     card.className = 'book-card';
                     const name = file.name.replace(/\.[^/.]+$/, "").replace(/[_-]/g, " ").toUpperCase();
-                    const viewUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(file.download_url)}&embedded=true`;
-                    card.innerHTML = `<div class="book-tooltip">${descriptions[key]}</div><i class="fas fa-book-open"></i><div class="book-name">${name}</div><div class="btn-group"><a href="${file.download_url}" class="btn">Download</a><a href="${viewUrl}" class="btn" target="_blank">Read</a></div>`;
+                    card.innerHTML = `<div class="book-tooltip">${descriptions[key]}</div><i class="fas fa-book-open"></i><div class="book-name">${name}</div><div style="display:flex;gap:5px;"><a href="${file.download_url}" class="btn">Download</a><a href="https://docs.google.com/viewer?url=${encodeURIComponent(file.download_url)}&embedded=true" class="btn" target="_blank">Read</a></div>`;
                     viewer.appendChild(card);
                 }
             });
