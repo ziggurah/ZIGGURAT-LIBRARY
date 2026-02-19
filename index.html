@@ -11,129 +11,108 @@
         body { 
             font-family: 'Segoe UI', Roboto, sans-serif; 
             background-color: var(--bg);
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000');
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000');
             background-size: cover; background-attachment: fixed; background-position: center;
-            color: var(--text); margin: 0; padding: 0; 
+            color: var(--text); margin: 0; padding: 0; scroll-behavior: smooth;
         }
-        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-        header { text-align: center; padding: 60px 0; border-bottom: 1px solid var(--gold); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header { text-align: center; padding: 80px 0 40px 0; border-bottom: 1px solid var(--gold); }
         h1 { letter-spacing: 12px; color: var(--gold); font-size: 3.5rem; margin: 0; font-weight: 300; text-transform: uppercase; }
         .subtitle { letter-spacing: 5px; color: #666; font-size: 1rem; margin-top: 15px; }
-        
-        .temple-box { 
-            background: rgba(20, 20, 20, 0.85); border: 1px solid #333;
-            padding: 40px; margin: 50px 0; border-radius: 2px; backdrop-filter: blur(10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+
+        /* Manifest Box */
+        .intro-box {
+            background: rgba(20, 20, 20, 0.6); border: 1px solid #333;
+            padding: 25px; margin: 40px 0; border-radius: 2px; text-align: center;
+            border-left: 3px solid var(--gold); border-right: 3px solid var(--gold);
         }
-        .temple-box h2 { color: var(--gold); font-size: 1.3rem; letter-spacing: 4px; margin-top: 0; font-weight: 400; border-bottom: 1px solid #333; padding-bottom: 15px; }
-        .temple-box p { line-height: 1.8; color: #bbb; font-size: 1.05rem; margin-top: 20px; }
+        .intro-box p { font-style: italic; color: #bbb; line-height: 1.8; margin: 0; font-size: 1.05rem; }
 
-        .donation-container { background: #000; border: 1px solid #222; margin-top: 30px; overflow: hidden; }
-        .donation-tabs { display: flex; background: #111; border-bottom: 1px solid #222; overflow-x: auto; }
-        .tab-btn { flex: 1; min-width: 100px; padding: 15px 5px; border: none; background: none; color: #555; cursor: pointer; font-size: 0.7rem; letter-spacing: 1px; transition: 0.3s; font-weight: bold; }
-        .tab-btn.active { color: var(--gold); background: #000; border-bottom: 2px solid var(--gold); }
-        .donation-content { display: none; flex-wrap: wrap; gap: 25px; align-items: center; padding: 25px; }
-        
-        .qr-code { width: 140px; height: 140px; border: 1px solid var(--gold); background: #fff; padding: 5px; cursor: pointer; }
-        .wallet-info { flex: 1; min-width: 250px; position: relative; }
-        .wallet-addr { font-family: monospace; color: var(--gold); font-size: 0.85rem; word-break: break-all; display: block; margin: 10px 0; background: #0a0a0a; padding: 12px; border: 1px dotted #444; cursor: pointer; transition: 0.3s; }
-        .wallet-addr:hover { border-color: var(--gold); background: #111; }
-        .copy-toast { position: absolute; top: -25px; right: 0; color: var(--gold); font-size: 0.65rem; letter-spacing: 1px; display: none; }
-
-        .pay-now-btn {
-            display: inline-flex; align-items: center; gap: 8px; margin-top: 5px; padding: 10px 18px;
-            background: var(--gold); color: #000; text-decoration: none; font-weight: bold; font-size: 0.7rem; letter-spacing: 1px; transition: 0.3s; border-radius: 2px;
-        }
-
-        .social-bar { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 30px; border-top: 1px solid #222; padding-top: 20px; align-items: center; gap: 20px; }
-        .share-icons { display: flex; gap: 18px; align-items: center; }
-        .share-icons a { color: #555; font-size: 1.3rem; transition: 0.3s; text-decoration: none; }
-        .share-icons a:hover { color: var(--gold); transform: translateY(-3px); }
-        .archive-vault-link { color: var(--gold); text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; font-weight: bold; display: flex; align-items: center; gap: 8px; border-left: 1px solid #333; padding-left: 20px; }
-        .contact-links a { color: var(--gold); text-decoration: none; font-size: 0.85rem; margin-left: 20px; opacity: 0.7; }
-
-        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
-        .book-card { background: rgba(15, 15, 15, 0.95); border: 1px solid #1a1a1a; padding: 40px 20px; text-align: center; transition: 0.4s; position: relative; }
+        /* Library Grid (Moved Up) */
+        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; margin-top: 20px; padding-bottom: 60px; }
+        .book-card { background: rgba(15, 15, 15, 0.95); border: 1px solid #1a1a1a; padding: 40px 20px; text-align: center; transition: 0.4s; position: relative; cursor: pointer; }
         .book-card:hover { border-color: var(--gold); transform: translateY(-8px); background: #1a1a1a; }
-        .book-tooltip { 
-            position: absolute; bottom: 105%; left: 10%; right: 10%; 
-            background: var(--gold); color: #000; padding: 12px; 
-            font-size: 0.8rem; border-radius: 4px; visibility: hidden; 
-            opacity: 0; transition: 0.3s; z-index: 100; font-weight: 500; 
-            pointer-events: none; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
+        .book-tooltip { position: absolute; bottom: 105%; left: 10%; right: 10%; background: var(--gold); color: #000; padding: 12px; font-size: 0.8rem; border-radius: 4px; visibility: hidden; opacity: 0; transition: 0.3s; z-index: 100; font-weight: 500; pointer-events: none; }
         .book-card:hover .book-tooltip { visibility: visible; opacity: 1; }
         .book-card i { font-size: 3rem; color: var(--gold); margin-bottom: 25px; opacity: 0.6; }
         .book-name { font-size: 1rem; margin-bottom: 30px; display: block; color: #fff; height: 45px; overflow: hidden; letter-spacing: 1px; }
-        .btn-group { display: flex; gap: 10px; }
-        .btn { border: 1px solid var(--gold); color: var(--gold); padding: 10px 5px; text-decoration: none; font-size: 0.7rem; transition: 0.3s; flex: 1; font-weight: bold; text-transform: uppercase; }
+        .btn-group { display: flex; gap: 5px; }
+        .btn { border: 1px solid var(--gold); color: var(--gold); padding: 10px 5px; text-decoration: none; font-size: 0.7rem; flex: 1; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
         .btn:hover { background: var(--gold); color: #000; }
-        #status { text-align: center; color: var(--gold); margin-top: 60px; font-size: 0.9rem; letter-spacing: 5px; }
+
+        /* New Sections Layout */
+        .info-section { background: rgba(15, 15, 15, 0.9); border: 1px solid #222; padding: 50px; margin: 40px 0; border-radius: 2px; }
+        .info-section h2 { color: var(--gold); font-size: 1.3rem; letter-spacing: 4px; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 25px; font-weight: 400; }
+        .info-section p { line-height: 1.8; color: #bbb; }
+
+        /* Donation (Moved to Footer Area) */
+        .donation-container { background: #000; border: 1px solid #222; margin-top: 20px; overflow: hidden; }
+        .donation-tabs { display: flex; background: #111; border-bottom: 1px solid #222; }
+        .tab-btn { flex: 1; padding: 15px; border: none; background: none; color: #555; cursor: pointer; font-size: 0.7rem; letter-spacing: 1px; transition: 0.3s; font-weight: bold; }
+        .tab-btn.active { color: var(--gold); background: #000; border-bottom: 2px solid var(--gold); }
+        .donation-content { display: none; flex-wrap: wrap; gap: 20px; align-items: center; padding: 25px; }
+        .qr-code { width: 120px; height: 120px; border: 1px solid var(--gold); background: #fff; padding: 5px; }
+        .wallet-addr { font-family: monospace; color: var(--gold); font-size: 0.8rem; word-break: break-all; display: block; margin: 10px 0; background: #0a0a0a; padding: 10px; border: 1px dotted #444; cursor: pointer; }
+
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid #222; margin-top: 60px; }
+        .contact-link { color: var(--gold); text-decoration: none; border: 1px solid var(--gold); padding: 10px 25px; font-size: 0.8rem; letter-spacing: 2px; transition: 0.3s; }
+        .contact-link:hover { background: var(--gold); color: #000; }
+
+        #status { text-align: center; color: var(--gold); margin: 40px 0; letter-spacing: 3px; }
     </style>
 </head>
 <body>
+
 <div class="container">
-    <header><h1>ZIGGURAT</h1><div class="subtitle">CIVILISATION STARTS HERE</div></header>
-    
-    <section class="temple-box">
-        <h2>YOU ARE STANDING IN A TEMPLE</h2>
-        <p>You have entered a zone of free transmission. These works are <strong>Seeds of Change</strong>. Mirror this archive and distribute the knowledge. Civilisation is a construction.</p>
+    <header>
+        <h1>ZIGGURAT</h1>
+        <div class="subtitle">CIVILISATION STARTS HERE</div>
+    </header>
+
+    <div class="intro-box">
+        <p>We do not live in reality. We live in a game that can be switched off: democracy, law, family, academia, history, etc. We dismantle them without asking permissions. What remains is an ancient field that invites you to a magic structure: Ziggurat.</p>
+    </div>
+
+    <div id="status">UNVEILING THE ARCHIVES...</div>
+    <div class="library-grid" id="viewer"></div>
+
+    <section class="info-section" id="about">
+        <h2>ABOUT ZIGGURAT</h2>
+        <p>Ziggurat is not a collection; it is a withdrawal. It is a static point in a world of high-velocity noise. We believe that modern institutions are not failing—they are functioning exactly as designed: to reduce the human experience into a manageable data set. This library provides the tools for an autopsy of the present and a blueprint for what lies beneath the matrix of social fictions.</p>
+    </section>
+
+    <section class="info-section" id="support">
+        <h2>SUSTAIN THE TRANSMISSION</h2>
+        <p>Ziggurat operates outside the institutional economy. Your contributions are used exclusively to maintain this archive, acquire new rare materials, and ensure the servers remain beyond the reach of those who wish to switch off the light. Donating here is an act of mirroring the Field.</p>
         
         <div class="donation-container">
             <div class="donation-tabs">
-                <button class="tab-btn active" onclick="showTab('trust-tab', this)">TRUST (BEP20/ERC20)</button>
+                <button class="tab-btn active" onclick="showTab('trust-tab', this)">TRUST (BEP20)</button>
                 <button class="tab-btn" onclick="showTab('tron-tab', this)">TRON (TRC20)</button>
                 <button class="tab-btn" onclick="showTab('btc-tab', this)">BITCOIN</button>
             </div>
-
             <div id="trust-tab" class="donation-content" style="display: flex;">
                 <img src="qr/qr-trust.jpg" class="qr-code">
-                <div class="wallet-info">
-                    <span style="font-size: 0.7rem; color: #666; letter-spacing: 1px;">NETWORK: BSC/ETH (USDT-BEP20 / BNB / ETH)</span>
-                    <span id="t1" class="copy-toast">COPIED!</span>
-                    <span class="wallet-addr" onclick="copyValue('0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889', 't1')">0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889</span>
-                    <a href="ethereum:0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889" class="pay-now-btn"><i class="fas fa-heart"></i> DONATE NOW!</a>
-                </div>
+                <div style="flex:1;"><span id="t1" style="color:var(--gold); display:none; font-size:0.7rem;">COPIED!</span><span class="wallet-addr" onclick="copyValue('0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889', 't1')">0x52Ec698495e5B1d71B21ed05D1Df3F3a9F929889</span></div>
             </div>
-
             <div id="tron-tab" class="donation-content">
                 <img src="qr/qr-tron.jpg" class="qr-code">
-                <div class="wallet-info">
-                    <span style="font-size: 0.7rem; color: #666; letter-spacing: 1px;">NETWORK: TRON (USDT-TRC20 / TRX)</span>
-                    <span id="t2" class="copy-toast">COPIED!</span>
-                    <span class="wallet-addr" onclick="copyValue('TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm', 't2')">TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm</span>
-                    <a href="tron:TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm" class="pay-now-btn"><i class="fas fa-heart"></i> DONATE NOW!</a>
-                </div>
+                <div style="flex:1;"><span id="t2" style="color:var(--gold); display:none; font-size:0.7rem;">COPIED!</span><span class="wallet-addr" onclick="copyValue('TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm', 't2')">TKHRHcKJA6saAX4xJu7ip2T9HWVThpj1Rm</span></div>
             </div>
-
             <div id="btc-tab" class="donation-content">
                 <img src="qr/qr-btc.jpg" class="qr-code">
-                <div class="wallet-info">
-                    <span style="font-size: 0.7rem; color: #666; letter-spacing: 1px;">NETWORK: BITCOIN</span>
-                    <span id="t3" class="copy-toast">COPIED!</span>
-                    <span class="wallet-addr" onclick="copyValue('bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r', 't3')">bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r</span>
-                    <a href="bitcoin:bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r" class="pay-now-btn"><i class="fas fa-heart"></i> DONATE NOW!</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="social-bar">
-            <div class="share-icons">
-                <a href="https://t.me/share/url?url=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="https://twitter.com/intent/tweet?url=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://ziggurah.github.io/ZIGGURAT-LIBRARY/" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.reddit.com/submit?url=https://ziggurah.github.io/ZIGGURAT-LIBRARY/&title=Ziggurat%20Library" target="_blank"><i class="fab fa-reddit-alien"></i></a>
-                <a href="https://archive.org/details/@ziggurat_library" target="_blank" class="archive-vault-link"><i class="fas fa-landmark"></i> THE VAULT</a>
-            </div>
-            <div class="contact-links">
-                <a href="mailto:oracle1903@gmail.com">EMAIL</a>
-                <a href="https://t.me/persianmagilibrary" target="_blank">CHANNEL</a>
+                <div style="flex:1;"><span id="t3" style="color:var(--gold); display:none; font-size:0.7rem;">COPIED!</span><span class="wallet-addr" onclick="copyValue('bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r', 't3')">bc1qzq228lmc4ctcldfqa23hq52qetywfrqr3kmv8r</span></div>
             </div>
         </div>
     </section>
 
-    <div id="status">UNVEILING THE ARCHIVES...</div>
-    <div class="library-grid" id="viewer"></div>
+    <footer>
+        <h2>CONTACT US</h2>
+        <p style="margin-bottom: 30px; color: #666;">Seek the Oracle for deeper transmissions.</p>
+        <a href="mailto:oracle1903@gmail.com" class="contact-link">SEND ENCRYPTED EMAIL</a>
+    </section>
 </div>
 
 <script>
@@ -178,7 +157,7 @@
                     card.className = 'book-card';
                     const displayName = file.name.replace(/\.[^/.]+$/, "").replace(/[_-]/g, " ");
                     const viewUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(file.download_url)}&embedded=true`;
-                    card.innerHTML = `<div class="book-tooltip">${descriptions[jsonKey]}</div><i class="fas fa-book-open"></i><div class="book-name">${displayName.toUpperCase()}</div><div class="btn-group"><a href="${file.download_url}" class="btn" target="_blank">Download</a><a href="${viewUrl}" class="btn" target="_blank">Read Online</a></div>`;
+                    card.innerHTML = `<div class="book-tooltip">${descriptions[jsonKey]}</div><i class="fas fa-book-open"></i><div class="book-name">${displayName.toUpperCase()}</div><div class="btn-group"><a href="${file.download_url}" class="btn">Download</a><a href="${viewUrl}" class="btn" target="_blank">Read Online</a></div>`;
                     viewer.appendChild(card);
                 }
             });
@@ -186,8 +165,5 @@
     }
     fetchArchive();
 </script>
-
-<script data-goatcounter="https://ziggurah.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
 </body>
 </html>
